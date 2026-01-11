@@ -6,6 +6,8 @@ An intelligent, modular system powered by **LangGraph** and **LangChain** that a
 
 The system follows a hub-and-spoke supervisor model where a central LLM manages the state and workflow transitions between specialized nodes.
 
+![Workflow Graph](workflow_graph.png)
+
 ### Agent Roles & Responsibilities
 
 
