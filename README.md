@@ -8,24 +8,20 @@ The system follows a hub-and-spoke supervisor model where a central LLM manages 
 
 ### Agent Roles & Responsibilities
 
-*
-**Research Planning Agent**: Extracts entities (Topic, Location, Time Period) and generates a structured research plan consisting of targeted questions and search keywords.
+
+* **Research Planning Agent**: Extracts entities (Topic, Location, Time Period) and generates a structured research plan consisting of targeted questions and search keywords.
 
 
-*
-**Supervisor Agent**: The "brain" of the operation. It evaluates the project state and determines which expert agent to call next based on a strictly defined sequence.
+* **Supervisor Agent**: The "brain" of the operation. It evaluates the project state and determines which expert agent to call next based on a strictly defined sequence.
 
 
-*
-**Researcher Agent**: A ReAct agent equipped with external tools (Google Search, Wikipedia, and DPLA) to gather primary and secondary source materials.
+* **Researcher Agent**: A ReAct agent equipped with external tools (Google Search, Wikipedia, and DPLA) to gather primary and secondary source materials.
 
 
-*
-**Checker Agent**: A logic-heavy agent that verifies factual accuracy via JSON-based scoring and performs conservative rewrites to ensure reliability.
+* **Checker Agent**: A logic-heavy agent that verifies factual accuracy via JSON-based scoring and performs conservative rewrites to ensure reliability.
 
 
-*
- **Report Generator Agent**: Handles the document engineering, transforming verified text into a styled PDF report using the `ReportLab` library.
+* **Report Generator Agent**: Handles the document engineering, transforming verified text into a styled PDF report using the `ReportLab` library.
 
 
 ---
@@ -42,20 +38,16 @@ When you run `streamlit run app.py`, the `AgentState` is initialized. This state
 
 The workflow is non-linear and managed by the **Supervisor Node**. After every agent completes its task, control returns to the Supervisor to decide the next step:
 
-* 
-**Step A (Planning)**: If no plan exists, the Supervisor calls the `Planner`.
+* **Step A (Planning)**: If no plan exists, the Supervisor calls the `Planner`.
 
 
-* 
-**Step B (Researching)**: Once a plan is in state, the Supervisor triggers the `Researcher` to use the search tools.
+* **Step B (Researching)**: Once a plan is in state, the Supervisor triggers the `Researcher` to use the search tools.
 
 
-* 
-**Step C (Verifying)**: After findings are compiled, the `Checker` validates the data against the original query.
+* **Step C (Verifying)**: After findings are compiled, the `Checker` validates the data against the original query.
 
 
-* 
-**Step D (Finalizing)**: Finally, the `Reporter` converts the verified text into a PDF and the Supervisor concludes the process with `FINISH`.
+* **Step D (Finalizing)**: Finally, the `Reporter` converts the verified text into a PDF and the Supervisor concludes the process with `FINISH`.
 
 
 
@@ -94,15 +86,10 @@ DPLA_API_KEY=your_dpla_key_here
 
 | Key | Purpose | How to Get |
 | --- | --- | --- |
-| **GROQ_API_KEY** | Runs the Llama-3 models | <br>[GroqCloud Console](https://console.groq.com/keys) 
+| **GROQ_API_KEY** | Runs the Llama-3 models | [GroqCloud Console](https://console.groq.com/keys) |
+| **SERP_API_KEY** | Enables Google Search capabilities | [SerpApi Dashboard](https://serpapi.com/) |
+| **DPLA_API_KEY** | Access to primary archival sources | Run the `curl` command below |
 
- |
-| **SERP_API_KEY** | Google Search capabilities | <br>[SerpApi Dashboard](https://serpapi.com/) 
-
- |
-| **DPLA_API_KEY** | Access to primary archival sources | Run the `curl` command below 
-
- |
 
 **To get the DPLA Key:**
 
